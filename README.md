@@ -1,0 +1,2 @@
+- to create read only volumes add ":ro" after volume syntax
+- ex: `docker run -d --rm -p 3000:8080 --name feedback-app -v feedback:/app/feedback -v "/home/lenovo/Desktop/AMIT/udemy/Docker/Docker/data-volumes-01-starting-setup:/app:ro" -v /app/node_modules -v /app/temp feedback-node:volumes`
