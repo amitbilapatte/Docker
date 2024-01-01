@@ -3,6 +3,9 @@
 # dependencies
 /node_modules
 /data-volumes-01-starting-setup/node_modules
+/multi/node_modules
+/multi/backend/node_modules
+/multi/frontend/node_modules
 /.pnp
 .pnp.js
 .yarn/*
