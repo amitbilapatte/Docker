@@ -38,3 +38,8 @@ For Dockerizing Node APP with MongoDB and React SPA:
   - `docker stop mongodb`
   - `docker run --name mongodb --rm -d --network goals-net mongo` // now we can't see previously added goals as data is lost when mongodb container was stopped
   - to prevent data loss use volume when creating the container: `docker run --name mongodb -v data:/data/db --rm -d --network goals-net mongo`
+
+- **FOR MONGODB USER AUTHENTICATION**
+  - `docker stop mongodb`
+  - `docker run --name mongodb -v data:/data/db --rm -d --network goals-net -e MONGO_INTIDB_ROOT_USERNAME=amit -e MONGO_INTIDB_ROOT_USERNAME=amitpassword mongo`
+  - Now in backend app change in mongoose.connect method `mongoose.connect("mongodb://amit:amitpassword@mongodb:27017/course-goals?authSource=admin",...remaining code ...`
