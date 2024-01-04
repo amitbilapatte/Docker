@@ -33,3 +33,8 @@ For Dockerizing Node APP with MongoDB and React SPA:
 - Add frontend
   - `docker build -t goals-react .`
   - `docker run --name goals-frontend --network goals-net --rm -p 3000:3000 -it goals-react`
+
+- **FOR DATA PERSISTENCE**
+  - `docker stop mongodb`
+  - `docker run --name mongodb --rm -d --network goals-net mongo` // now we can't see previously added goals as data is lost when mongodb container was stopped
+  - to prevent data loss use volume when creating the container: `docker run --name mongodb -v data:/data/db --rm -d --network goals-net mongo`
