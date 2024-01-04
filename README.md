@@ -19,3 +19,17 @@ For Dockerizing Node APP with MongoDB and React SPA:
   - `docker run --name mongodb --rm -d -p 27017:27017 mongo`
 - to run frontend react SPA:
   - Add urls for fetch requests as `http://localhost:8080/goals`
+
+- **TO Add DOCKER NETWORK:**
+- Add mongo in network =>
+  - `docker network create goals-net` //goals-net is network name here
+  - `docker run --name mongodb --rm -d --network goals-net mongo`
+- Add backend in network =>
+  - change code in App.js for mongoose.connect method like this: `mongoose.connect("mongodb://mongodb:27017/course-goals",...remaining code ...`
+  - rebuild image `docker build-t goals-node .`
+  - run `docker run --name goals-backend --rm -d --network goals-net goals-node` (it won't work for frontend as frontend can't access backend as react frontend works on browser, and backend is on server and we haven't provided any port to accesss it) 
+  - run `docker run --name goals-backend --rm -d -p 8080:8080 --network goals-net goals-node` (now frontend can access it via port number)
+
+- Add frontend
+  - `docker build -t goals-react .`
+  - `docker run --name goals-frontend --network goals-net --rm -p 3000:3000 -it goals-react`
