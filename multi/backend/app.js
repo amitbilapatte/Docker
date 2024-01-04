@@ -82,7 +82,8 @@ mongoose.connect(
   // "mongodb://localhost:27017/course-goals", //for connecting mongodb which is running on local host machine
   // "mongodb://host.docker.internal:27017/course-goals", for connecting containerized mongodb on machine (it works for all systems except linux)
   // "mongodb://172.17.0.1:27017/course-goals", //for connecting containerized mongodb on machine (it works for linux/ubuntu)
-  "mongodb://mongodb:27017/course-goals", //for connecting in the netwoork and "mongodb" is name of container which is part of that network
+  // "mongodb://mongodb:27017/course-goals", //for connecting in the netwoork and "mongodb" is name of container which is part of that network
+  "mongodb://amit:amitpassword@mongodb:27017/course-goals?authSource=admin", //for adding authentication which is set while creating mongo container
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
