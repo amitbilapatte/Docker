@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  mongodb:
+    image: "mongo"
+    volumes:
+      - data:/data/db
+    environment:
+       MONGODB_INITDB_ROOT_USERNAME: amit
+       MONGODB_INITDB_ROOT_PASSWORD: reddy # no need of "-" here for ":" format
+      # - MONGODB_INITDB_ROOT_USERNAME=amit #"-" is required when using "=" format
+      # - MONGODB_INITDB_ROOT_PASSWORD=reddy
+  backend:
+  frontend:
