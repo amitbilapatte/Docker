@@ -4,6 +4,7 @@ services:
     image: "mongo"
     volumes:
       - data:/data/db
+    # container_name: mymongodbcontainername #If you don't wan't auto-generated container names
     # environment:
     #    MONGODB_INITDB_ROOT_USERNAME: amit
     #    MONGODB_INITDB_ROOT_PASSWORD: reddy # no need of "-" here for ":" format
@@ -31,6 +32,16 @@ services:
       - ./env/backend.env
     depends_on:
       - mongodb
+  frontend:
+    build: ./frontend
+    ports: 
+      - '3000:3000'
+    volumes: 
+      - ./frontend/src:/app/src
+    stdin_open: true #-it is combination of `stdin_open : true` and `tty:true`
+    tty: true
+    depends_on: 
+      - backend
 
 # Add named volumes here again
 volumes:
