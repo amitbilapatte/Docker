@@ -11,5 +11,28 @@ services:
       # - MONGODB_INITDB_ROOT_PASSWORD=reddy
     env_file:
       - ./env/mongo.env
+    # networks:
+    #   - goals-net
+  backend:
+    build: ./backend
+    # use above short syntax if you have your docker filename as "Dockerfile" , otherwise use below longer syntax
+    # build:
+    #   context: ./backend
+    #   dockerfile: dockerfilename
+    #   args: #use this if we need to pass any "args"
+    #     - some-agr=1
+    ports:
+      - "8080:8080"
+    volumes:
+      - logs:/app/logs
+      - ./backend:/app
+      - /app/node_modules
+    env_file:
+      - ./env/backend.env
+    depends_on:
+      - mongodb
+
+# Add named volumes here again
 volumes:
   data:
+  logs:
