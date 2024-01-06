@@ -43,3 +43,15 @@ For Dockerizing Node APP with MongoDB and React SPA:
   - `docker stop mongodb`
   - `docker run --name mongodb -v data:/data/db --rm -d --network goals-net -e MONGO_INTIDB_ROOT_USERNAME=amit -e MONGO_INTIDB_ROOT_USERNAME=amitpassword mongo`
   - Now in backend app change in mongoose.connect method `mongoose.connect("mongodb://amit:amitpassword@mongodb:27017/course-goals?authSource=admin",...remaining code ...`
+
+- `docker run node`
+- `docker run -it -d node`
+- `docker exec -it containerName npm init`
+- `docker run -it node npm init`
+- `docker build -t node-util .`
+- `docker run -it -v /user/AMIT/Docker/appname:/app node-util npm init`
+- `docker build -t mynpm .`
+- `docker run -it -v /user/AMIT/Docker/appname:/app node-util mynpm install`
+- `docker-compose up`
+<!-- above command will autoexit -->
+- `docker-compose --rm run npm init`
