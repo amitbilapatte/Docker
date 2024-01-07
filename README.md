@@ -1,4 +1,6 @@
-- to create read only volumes add ":ro" after volume syntax
+# **COMMANDS**
+
+- To create read only volumes add ":ro" after volume syntax
 - ex: `docker run -d --rm -p 3000:8080 --name feedback-app -v feedback:/app/feedback -v "/home/lenovo/Desktop/AMIT/udemy/Docker/Docker/data-volumes-01-starting-setup:/app:ro" -v /app/node_modules -v /app/temp feedback-node:volumes`
 
 - to add environment variables add below lines in Dockerfile
@@ -9,6 +11,7 @@
 - to add environment variables from `.env` file add `--env-file ./.env` in docker run command
 
 For Dockerizing Node APP with MongoDB and React SPA:
+
 - in node app :
   - `docker -t goals-node .`
   - `docker run --name goals-backend --add-host=host.docker.internal:172.17.0.1 --rm goals-node` (ok for conneting with db)
@@ -21,13 +24,14 @@ For Dockerizing Node APP with MongoDB and React SPA:
   - Add urls for fetch requests as `http://localhost:8080/goals`
 
 - **TO Add DOCKER NETWORK:**
+
 - Add mongo in network =>
   - `docker network create goals-net` //goals-net is network name here
   - `docker run --name mongodb --rm -d --network goals-net mongo`
 - Add backend in network =>
   - change code in App.js for mongoose.connect method like this: `mongoose.connect("mongodb://mongodb:27017/course-goals",...remaining code ...`
   - rebuild image `docker build-t goals-node .`
-  - run `docker run --name goals-backend --rm -d --network goals-net goals-node` (it won't work for frontend as frontend can't access backend as react frontend works on browser, and backend is on server and we haven't provided any port to accesss it) 
+  - run `docker run --name goals-backend --rm -d --network goals-net goals-node` (it won't work for frontend as frontend can't access backend as react frontend works on browser, and backend is on server and we haven't provided any port to accesss it)
   - run `docker run --name goals-backend --rm -d -p 8080:8080 --network goals-net goals-node` (now frontend can access it via port number)
 
 - Add frontend
@@ -55,3 +59,10 @@ For Dockerizing Node APP with MongoDB and React SPA:
 - `docker-compose up`
 <!-- above command will autoexit -->
 - `docker-compose --rm run npm init`
+
+- **FOR LARAVEL APPLICATION**
+
+- after adding `docker-compose.yaml` file, we have to target on single service `composer` to install the laravel basic setup by `docker-compose run` command as follows:
+ `docker-compose run --rm composer create-project --prefer-dist laravel/laravel .`
+
+- This project didn't work on my end (may be ubuntu issue).
