@@ -55,3 +55,7 @@ For Dockerizing Node APP with MongoDB and React SPA:
 - `docker-compose up`
 <!-- above command will autoexit -->
 - `docker-compose --rm run npm init`
+
+** FOR LARAVEL APPLICATION **
+- after adding `docker-compose.yaml` file, we have to target on single service `composer` to install the laravel basic setup by `docker-compose run` command as follows:
+ `docker-compose run --rm composer create-project --prefer-dist laravel/laravel .`
